@@ -15,7 +15,7 @@ public class Jogo {
     protected void inicializarJogo() {
         Tabuleiro tab = new Tabuleiro(this.qtdPecas, this.qtdColunas, this.nomeLinhas);
         CPU cpu = new CPU();
-        Player player = new Player();
+        Humano humano = new Humano();
 
         System.out.println("Inicio do jogo");
         tab.imprimirTabuleiro(); //tabuleiro vazio
@@ -23,7 +23,7 @@ public class Jogo {
         tab.posicionarPecas();
         tab.posicionarPecasCPU();
 
-        player.changeVez();
+        humano.changeVez();
     }
 
     protected void rodada() {

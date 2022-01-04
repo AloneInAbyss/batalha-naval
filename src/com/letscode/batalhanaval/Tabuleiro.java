@@ -5,7 +5,7 @@ import java.util.*;
 public class Tabuleiro {
     int qtdPecas, qtdColunas, countPecas;
     char[] nomeLinhas;
-    Peca[] pecasPlayer; // Lista de peças do jogador
+    Peca[] pecasHumano; // Lista de peças do jogador
     Peca[] pecasCPU; // Lista de peças do computador
 
     Scanner sc = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class Tabuleiro {
         this.qtdColunas = qtdColunas;
         this.nomeLinhas = nomeLinhas;
         this.pecasCPU = new Peca[qtdPecas];
-        this.pecasPlayer = new Peca[qtdPecas];
+        this.pecasHumano = new Peca[qtdPecas];
         this.tabuleiro = montarTabuleiro();
         this.dicRows = gerarDicionario(this.nomeLinhas);
     }
@@ -81,7 +81,7 @@ public class Tabuleiro {
          * No lugar da coordenada pode-se utilizar o comendo edit para modificar a posição de uma peça
         ***/
 
-        for (int i = 0; i<this.pecasPlayer.length; i++){
+        for (int i = 0; i<this.pecasHumano.length; i++){
             System.out.println("Por favor, posicione a " + (i+1) + "ª peça: ");
             coordenada = sc.nextLine();
             coordenada = coordenada.toUpperCase();
@@ -89,8 +89,8 @@ public class Tabuleiro {
             if (!coordenada.equals("EDIT")) { //posiciona uma peça
                 coor = coordenada.split("");
 
-                if (verificarCasaLivre(this.pecasPlayer, coordenada)){
-                    this.pecasPlayer[i] = new Submarino(i,0, coor[0], Integer.valueOf(coor[1])); // inicializa a instância da peça
+                if (verificarCasaLivre(this.pecasHumano, coordenada)){
+                    this.pecasHumano[i] = new Submarino(i,0, coor[0], Integer.valueOf(coor[1])); // inicializa a instância da peça
                     this.tabuleiro[dicRows.get(coor[0])][3+2*Integer.valueOf(coor[1])] = 'N'; // modifica a representação gráfica do tabuleiro
                     imprimirTabuleiro();
                 } else {
@@ -147,13 +147,13 @@ public class Tabuleiro {
     protected void editarPosicao(){
 
         countPecas = 0; //Qtd de peças já posicionadas
-        for (Peca peca: this.pecasPlayer) {
+        for (Peca peca: this.pecasHumano) {
             if (peca != null) {
                 countPecas++;
             }
         }
 
-        listaDePecas(this.pecasPlayer);
+        listaDePecas(this.pecasHumano);
 
         System.out.println("Selecione o id da peça para modificar sua posição: ");
         String idPeca = sc.nextLine();
@@ -166,15 +166,15 @@ public class Tabuleiro {
 
             coor = newCoor.split(""); //nova coordenada da peça
 
-            if (verificarCasaLivre(this.pecasPlayer, newCoor)){
-                oldCoor = this.pecasPlayer[id].getCoordenada().split(""); //coordenada antiga da peça
-                this.pecasPlayer[id].changeCoordenada(coor[0], Integer.valueOf(coor[1])); // muda coordenada da peça
+            if (verificarCasaLivre(this.pecasHumano, newCoor)){
+                oldCoor = this.pecasHumano[id].getCoordenada().split(""); //coordenada antiga da peça
+                this.pecasHumano[id].changeCoordenada(coor[0], Integer.valueOf(coor[1])); // muda coordenada da peça
 
                 this.tabuleiro[dicRows.get(oldCoor[0])][3+2*Integer.valueOf(oldCoor[1])] = ' '; // apaga peça do tabuleiro
                 this.tabuleiro[dicRows.get(coor[0])][3+2*Integer.valueOf(coor[1])] = 'N'; // reposiciona peça no tabuleiro
 
                 imprimirTabuleiro();
-                //listaDePecas(this.pecasPlayer);
+                //listaDePecas(this.pecasHumano);
             } else {
                 System.out.println("Coordenada inválida!!");
             }
