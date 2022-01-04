@@ -2,7 +2,7 @@ package com.letscode.batalhanaval;
 
 import java.util.*;
 
-public class Tabuleiro {
+public class aTabuleiro {
     int qtdPecas, qtdColunas, countPecas;
     char[] nomeLinhas;
     Peca[] pecasPlayer; // Lista de peças do jogador
