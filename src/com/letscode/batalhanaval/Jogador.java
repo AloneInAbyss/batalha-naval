@@ -11,13 +11,13 @@ public abstract class Jogador {
         this.vez = false;
     }
 
-    protected void incrementarScore() {
-        this.score ++;
-    }
-
-    protected void atirar(String Lance) {
-        // Implementar
-    }
+//    protected void incrementarScore() {
+//        this.score ++;
+//    }
+//
+//    protected void atirar(String Lance) {
+//        // Implementar
+//    }
 
     protected void changeVez() {
         if (vez) {

@@ -6,7 +6,7 @@ public class Submarino extends Peca{
         super(id, tipo, linha, coluna);
     }
 
-    protected void destruirCasa() {
-        //implementar;
-    }
+//    protected void destruirCasa() {
+//        //implementar;
+//    }
 }

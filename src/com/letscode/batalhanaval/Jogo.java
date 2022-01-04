@@ -14,7 +14,7 @@ public class Jogo {
 
     protected void inicializarJogo() {
         Tabuleiro tab = new Tabuleiro(this.qtdPecas, this.qtdColunas, this.nomeLinhas);
-        CPU cpu = new CPU();
+//        CPU cpu = new CPU();
         Humano humano = new Humano();
 
         System.out.println("Inicio do jogo");
@@ -26,20 +26,20 @@ public class Jogo {
         humano.changeVez();
     }
 
-    protected void rodada() {
-        //if (player.vez)
-    }
+//    protected void rodada() {
+//        //if (player.vez)
+//    }
 
-    protected boolean checarTiro() {
-        //implementar
-        return false;
-    }
+//    protected boolean checarTiro() {
+//        //implementar
+//        return false;
+//    }
 
-    protected void changeFimDeJogo() {
-        this.fimDeJogo = true;
-    }
-
-    protected boolean getFimDeJogo() {
-        return this.fimDeJogo;
-    }
+//    protected void changeFimDeJogo() {
+//        this.fimDeJogo = true;
+//    }
+//
+//    protected boolean getFimDeJogo() {
+//        return this.fimDeJogo;
+//    }
 }

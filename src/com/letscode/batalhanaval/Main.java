@@ -9,8 +9,8 @@ public class Main {
         Jogo jogo = new Jogo(qtdPecas, qtdColunas, nomeLinhas);
         jogo.inicializarJogo();
 
-        while (!jogo.fimDeJogo) {
-            jogo.rodada();
-        }
+//        while (!jogo.fimDeJogo) {
+//            jogo.rodada();
+//        }
     }
 }

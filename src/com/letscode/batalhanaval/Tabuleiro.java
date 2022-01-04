@@ -121,7 +121,7 @@ public class Tabuleiro {
             int rLinha = r.nextInt(this.nomeLinhas.length);
             int rColuna = r.nextInt(this.qtdColunas);
 
-            coordenada = ""+ nomeLinhas[rLinha] + rColuna;
+            coordenada = "" + nomeLinhas[rLinha] + rColuna;
 
             if (verificarCasaLivre(pecasCPU, coordenada)){
                 coor = coordenada.split("");
@@ -153,7 +153,7 @@ public class Tabuleiro {
             }
         }
 
-        listaDePecas(this.pecasHumano);
+//        listaDePecas(this.pecasHumano);
 
         System.out.println("Selecione o id da peça para modificar sua posição: ");
         String idPeca = sc.nextLine();
