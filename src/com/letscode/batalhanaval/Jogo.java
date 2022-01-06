@@ -1,13 +1,13 @@
 package com.letscode.batalhanaval;
 
 public class Jogo {
-    Humano humano;
-    CPU cpu;
+    private final Humano humano;
+    private final CPU cpu;
     boolean fimDeJogo;
 
     public Jogo() {
-        this.humano = new Humano();
-        this.cpu = new CPU();
+        humano = new Humano();
+        cpu = new CPU();
 
         gameLoop();
     }
@@ -18,6 +18,21 @@ public class Jogo {
 
         while (!fimDeJogo) {
             humano.fazerJogada(cpu);
+            cpu.fazerJogada(humano);
+
+            if (checarSePontosAcabaram()) fimDeJogo = true;
         }
+    }
+
+    private boolean checarSePontosAcabaram() {
+        if (humano.pontos <= 0) {
+            return true;
+        }
+
+        if (cpu.pontos <= 0) {
+            return true;
+        }
+
+        return false;
     }
 }

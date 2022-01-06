@@ -4,27 +4,29 @@ import java.util.Scanner;
 
 public class Humano {
     Tabuleiro tabuleiro;
+    public short pontos;
 
     public Humano() {
-        this.tabuleiro = new Tabuleiro();
+        tabuleiro = new Tabuleiro();
+        pontos = tabuleiro.numeroDePecas;
     }
 
     public void posicionarPecas() {
-        for (int i = 0; i < this.tabuleiro.numeroDePecas; i++) {
+        for (int i = 0; i < tabuleiro.numeroDePecas; i++) {
             String posicao = receberPosicaoDoUsuario();
 
-            if (tabuleiro.verificarSePosicaoInvalida(posicao) || tabuleiro.verificarSePosicaoRepetida(posicao)) {
+            if (tabuleiro.verificarSePosicaoRepetida(posicao)) {
                 System.out.println("Posição inválida!");
                 i--;
                 continue;
             }
 
-            this.tabuleiro.posicoes[i] = posicao;
+            tabuleiro.posicoes[i] = posicao;
         }
 
         // Debug
         System.out.println("Player:");
-        for (String pos : this.tabuleiro.posicoes) {
+        for (String pos : tabuleiro.posicoes) {
             System.out.println(pos);
         }
     }
@@ -47,8 +49,8 @@ public class Humano {
                 continue;
             }
 
-            jogada = posicao;
             jogadaInvalida = false;
+            jogada = posicao;
         }
 
         tabuleiro.jogadas.add(jogada);
@@ -59,5 +61,10 @@ public class Humano {
         for (String item : tabuleiro.jogadas) {
             System.out.println(item);
         }
+    }
+
+    public void receberJogada(String posicao) {
+        if (tabuleiro.checarSeTiroAcertou(posicao)) pontos--;
+        System.out.println("Seu Score: " + pontos);
     }
 }

@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Tabuleiro {
-    public short numeroDePecas = 10;
-    public String[] posicoes = new String[numeroDePecas];
-    public ArrayList<String> jogadas = new ArrayList<>();
+    public short numeroDePecas;
+    public String[] posicoes;
+    public ArrayList<String> jogadas;
 
-    public boolean verificarSePosicaoInvalida(String posicao) {
+    public Tabuleiro() {
+        numeroDePecas = 2;
+        posicoes = new String[numeroDePecas];
+        jogadas = new ArrayList<>();
+    }
+
+    private boolean verificarSePosicaoInvalida(String posicao) {
         if (posicao.length() != 2) return true;
 
         switch (posicao.charAt(0)) {
@@ -47,7 +53,9 @@ public class Tabuleiro {
     }
 
     public boolean verificarSePosicaoRepetida(String posicaoParaAdicionar) {
-        for (String posicao : this.posicoes) {
+        if (verificarSePosicaoInvalida(posicaoParaAdicionar)) return true;
+
+        for (String posicao : posicoes) {
             if (posicao == null) return false;
             if (posicao.equals(posicaoParaAdicionar)) return true;
         }
@@ -55,9 +63,9 @@ public class Tabuleiro {
     }
 
     public boolean verificarSeJogadaInvalida(String posicaoDaJogada) {
-        verificarSePosicaoInvalida(posicaoDaJogada);
+        if (verificarSePosicaoInvalida(posicaoDaJogada)) return true;
 
-        for (String jogada : this.jogadas) {
+        for (String jogada : jogadas) {
             if (jogada == null) return false;
             if (jogada.equals(posicaoDaJogada)) return true;
         }
@@ -68,7 +76,6 @@ public class Tabuleiro {
         for (String item : posicoes) {
             if (Objects.equals(posicaoDoTiro, item)) return true;
         }
-
         return false;
     }
 }
