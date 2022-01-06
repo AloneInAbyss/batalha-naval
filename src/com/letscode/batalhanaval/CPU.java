@@ -16,7 +16,6 @@ public class CPU {
             String posicao = sortearPosicao();
 
             if (tabuleiro.verificarSePosicaoRepetida(posicao)) {
-                System.out.println("Posição da CPU repetida!");
                 i--;
                 continue;
             }
@@ -25,7 +24,7 @@ public class CPU {
         }
 
         // Debug
-        System.out.println("CPU:");
+        System.out.println("Navios da CPU:");
         for (String pos : tabuleiro.posicoesDosNavios) {
             System.out.println(pos);
         }
@@ -78,7 +77,7 @@ public class CPU {
 
     public void receberJogada(String posicao) {
         if (tabuleiro.checarSeTiroAcertou(posicao)) pontos--;
-        System.out.println("Score da CPU: " + pontos);
+        System.out.println("Navios restantes da CPU: " + pontos);
     }
 
     public void fazerJogada(Humano humano) {
@@ -89,7 +88,6 @@ public class CPU {
             jogada = sortearPosicao();
 
             if (tabuleiro.verificarSeJogadaInvalida(jogada)) {
-                System.out.println("Posição inválida na CPU!");
                 continue;
             }
 
@@ -101,6 +99,7 @@ public class CPU {
         humano.receberJogada(jogada);
 
         // Debug
+        System.out.println("Jogadas da CPU:");
         for (String item : tabuleiro.jogadasAnteriores) {
             System.out.println(item);
         }

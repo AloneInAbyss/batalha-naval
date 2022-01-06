@@ -25,7 +25,7 @@ public class Humano {
         }
 
         // Debug
-        System.out.println("Player:");
+        System.out.println("Seus navios:");
         for (String pos : tabuleiro.posicoesDosNavios) {
             System.out.println(pos);
         }
@@ -58,6 +58,7 @@ public class Humano {
         cpu.receberJogada(jogada);
 
         // Debug
+        System.out.println("Suas jogadas:");
         for (String item : tabuleiro.jogadasAnteriores) {
             System.out.println(item);
         }
@@ -65,6 +66,6 @@ public class Humano {
 
     public void receberJogada(String posicao) {
         if (tabuleiro.checarSeTiroAcertou(posicao)) pontos--;
-        System.out.println("Seu Score: " + pontos);
+        System.out.println("Seus navios restantes: " + pontos);
     }
 }
