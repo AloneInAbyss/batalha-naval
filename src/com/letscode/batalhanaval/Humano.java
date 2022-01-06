@@ -13,7 +13,7 @@ public class Humano {
         for (int i = 0; i < this.tabuleiro.numeroDePecas; i++) {
             String posicao = receberPosicaoDoUsuario();
 
-            if (tabuleiro.verificarSePosicaoInvalida(posicao)) {
+            if (tabuleiro.verificarSePosicaoInvalida(posicao) || tabuleiro.verificarSePosicaoRepetida(posicao)) {
                 System.out.println("Posição inválida!");
                 i--;
                 continue;
@@ -33,5 +33,31 @@ public class Humano {
         System.out.println("Digite uma posição (por exemplo, A4): ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().toUpperCase().trim();
+    }
+
+    public void fazerJogada(CPU cpu) {
+        String jogada = "";
+        boolean jogadaInvalida = true;
+
+        while (jogadaInvalida) {
+            String posicao = receberPosicaoDoUsuario();
+
+            if (tabuleiro.verificarSeJogadaInvalida(posicao)) {
+                System.out.println("Posição inválida!");
+                continue;
+            }
+
+            jogada = posicao;
+            jogadaInvalida = false;
+        }
+
+        tabuleiro.jogadas.add(jogada);
+
+        cpu.receberJogada(jogada);
+
+        // Debug
+        for (String item : tabuleiro.jogadas) {
+            System.out.println(item);
+        }
     }
 }

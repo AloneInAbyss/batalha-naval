@@ -1,8 +1,12 @@
 package com.letscode.batalhanaval;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Tabuleiro {
     public short numeroDePecas = 10;
     public String[] posicoes = new String[numeroDePecas];
+    public ArrayList<String> jogadas = new ArrayList<>();
 
     public boolean verificarSePosicaoInvalida(String posicao) {
         if (posicao.length() != 2) return true;
@@ -39,8 +43,6 @@ public class Tabuleiro {
                 return true;
         }
 
-        if (verificarSePosicaoRepetida(posicao)) return true;
-
         return false;
     }
 
@@ -49,6 +51,24 @@ public class Tabuleiro {
             if (posicao == null) return false;
             if (posicao.equals(posicaoParaAdicionar)) return true;
         }
+        return false;
+    }
+
+    public boolean verificarSeJogadaInvalida(String posicaoDaJogada) {
+        verificarSePosicaoInvalida(posicaoDaJogada);
+
+        for (String jogada : this.jogadas) {
+            if (jogada == null) return false;
+            if (jogada.equals(posicaoDaJogada)) return true;
+        }
+        return false;
+    }
+
+    public boolean checarSeTiroAcertou(String posicaoDoTiro) {
+        for (String item : posicoes) {
+            if (Objects.equals(posicaoDoTiro, item)) return true;
+        }
+
         return false;
     }
 }

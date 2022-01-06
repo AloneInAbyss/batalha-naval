@@ -4,9 +4,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CPU {
     Tabuleiro tabuleiro;
+    private short score;
 
     public CPU() {
         this.tabuleiro = new Tabuleiro();
+        this.score = 10;
     }
 
     public void posicionarPecas() {
@@ -72,5 +74,10 @@ public class CPU {
         position += Integer.toString(randomColumn);
 
         return position;
+    }
+
+    public void receberJogada(String posicao) {
+        if (tabuleiro.checarSeTiroAcertou(posicao)) this.score--;
+        System.out.println(this.score);
     }
 }

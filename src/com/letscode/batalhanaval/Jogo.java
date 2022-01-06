@@ -3,6 +3,7 @@ package com.letscode.batalhanaval;
 public class Jogo {
     Humano humano;
     CPU cpu;
+    boolean fimDeJogo;
 
     public Jogo() {
         this.humano = new Humano();
@@ -14,5 +15,9 @@ public class Jogo {
     private void gameLoop() {
         humano.posicionarPecas();
         cpu.posicionarPecas();
+
+        while (!fimDeJogo) {
+            humano.fazerJogada(cpu);
+        }
     }
 }
