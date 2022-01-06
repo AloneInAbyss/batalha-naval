@@ -4,8 +4,8 @@ public class Tabuleiro {
     public short numeroDePecas = 10;
     public String[] posicoes = new String[numeroDePecas];
 
-    public boolean verificarSePosicaoValida(String posicao) {
-        if (posicao.length() != 2) return false;
+    public boolean verificarSePosicaoInvalida(String posicao) {
+        if (posicao.length() != 2) return true;
 
         switch (posicao.charAt(0)) {
             case 'A':
@@ -20,7 +20,7 @@ public class Tabuleiro {
             case 'J':
                 break;
             default:
-                return false;
+                return true;
         }
 
         switch (posicao.charAt(1)) {
@@ -36,15 +36,15 @@ public class Tabuleiro {
             case '9':
                 break;
             default:
-                return false;
+                return true;
         }
 
-        if (verificarSePosicaoRepetida(posicao)) return false;
+        if (verificarSePosicaoRepetida(posicao)) return true;
 
-        return true;
+        return false;
     }
 
-    private boolean verificarSePosicaoRepetida(String posicaoParaAdicionar) {
+    public boolean verificarSePosicaoRepetida(String posicaoParaAdicionar) {
         for (String posicao : this.posicoes) {
             if (posicao == null) return false;
             if (posicao.equals(posicaoParaAdicionar)) return true;

@@ -4,7 +4,7 @@ public class Jogo {
     Humano humano;
     CPU cpu;
 
-    Jogo() {
+    public Jogo() {
         this.humano = new Humano();
         this.cpu = new CPU();
 
@@ -13,5 +13,6 @@ public class Jogo {
 
     private void gameLoop() {
         humano.posicionarPecas();
+        cpu.posicionarPecas();
     }
 }

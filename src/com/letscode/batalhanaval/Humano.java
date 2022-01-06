@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Humano {
     Tabuleiro tabuleiro;
 
-    Humano() {
+    public Humano() {
         this.tabuleiro = new Tabuleiro();
     }
 
@@ -13,7 +13,8 @@ public class Humano {
         for (int i = 0; i < this.tabuleiro.numeroDePecas; i++) {
             String posicao = receberPosicaoDoUsuario();
 
-            if (!tabuleiro.verificarSePosicaoValida(posicao)) {
+            if (tabuleiro.verificarSePosicaoInvalida(posicao)) {
+                System.out.println("Posição inválida!");
                 i--;
                 continue;
             }
@@ -21,12 +22,15 @@ public class Humano {
             this.tabuleiro.posicoes[i] = posicao;
         }
 
+        // Debug
+        System.out.println("Player:");
         for (String pos : this.tabuleiro.posicoes) {
             System.out.println(pos);
         }
     }
 
     private String receberPosicaoDoUsuario() {
+        System.out.println("Digite uma posição (por exemplo, A4): ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().toUpperCase().trim();
     }
