@@ -21,12 +21,12 @@ public class Humano {
                 continue;
             }
 
-            tabuleiro.posicoes[i] = posicao;
+            tabuleiro.posicoesDosNavios[i] = posicao;
         }
 
         // Debug
         System.out.println("Player:");
-        for (String pos : tabuleiro.posicoes) {
+        for (String pos : tabuleiro.posicoesDosNavios) {
             System.out.println(pos);
         }
     }
@@ -53,12 +53,12 @@ public class Humano {
             jogada = posicao;
         }
 
-        tabuleiro.jogadas.add(jogada);
+        tabuleiro.jogadasAnteriores.add(jogada);
 
         cpu.receberJogada(jogada);
 
         // Debug
-        for (String item : tabuleiro.jogadas) {
+        for (String item : tabuleiro.jogadasAnteriores) {
             System.out.println(item);
         }
     }

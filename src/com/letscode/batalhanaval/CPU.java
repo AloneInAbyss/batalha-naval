@@ -21,12 +21,12 @@ public class CPU {
                 continue;
             }
 
-            tabuleiro.posicoes[i] = posicao;
+            tabuleiro.posicoesDosNavios[i] = posicao;
         }
 
         // Debug
         System.out.println("CPU:");
-        for (String pos : tabuleiro.posicoes) {
+        for (String pos : tabuleiro.posicoesDosNavios) {
             System.out.println(pos);
         }
     }
@@ -96,12 +96,12 @@ public class CPU {
             jogadaInvalida = false;
         }
 
-        tabuleiro.jogadas.add(jogada);
+        tabuleiro.jogadasAnteriores.add(jogada);
 
         humano.receberJogada(jogada);
 
         // Debug
-        for (String item : tabuleiro.jogadas) {
+        for (String item : tabuleiro.jogadasAnteriores) {
             System.out.println(item);
         }
     }

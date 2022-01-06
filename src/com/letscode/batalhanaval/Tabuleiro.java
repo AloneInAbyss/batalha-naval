@@ -5,13 +5,13 @@ import java.util.Objects;
 
 public class Tabuleiro {
     public short numeroDePecas;
-    public String[] posicoes;
-    public ArrayList<String> jogadas;
+    public String[] posicoesDosNavios;
+    public ArrayList<String> jogadasAnteriores;
 
     public Tabuleiro() {
         numeroDePecas = 2;
-        posicoes = new String[numeroDePecas];
-        jogadas = new ArrayList<>();
+        posicoesDosNavios = new String[numeroDePecas];
+        jogadasAnteriores = new ArrayList<>();
     }
 
     private boolean verificarSePosicaoInvalida(String posicao) {
@@ -55,7 +55,7 @@ public class Tabuleiro {
     public boolean verificarSePosicaoRepetida(String posicaoParaAdicionar) {
         if (verificarSePosicaoInvalida(posicaoParaAdicionar)) return true;
 
-        for (String posicao : posicoes) {
+        for (String posicao : posicoesDosNavios) {
             if (posicao == null) return false;
             if (posicao.equals(posicaoParaAdicionar)) return true;
         }
@@ -65,7 +65,7 @@ public class Tabuleiro {
     public boolean verificarSeJogadaInvalida(String posicaoDaJogada) {
         if (verificarSePosicaoInvalida(posicaoDaJogada)) return true;
 
-        for (String jogada : jogadas) {
+        for (String jogada : jogadasAnteriores) {
             if (jogada == null) return false;
             if (jogada.equals(posicaoDaJogada)) return true;
         }
@@ -73,7 +73,7 @@ public class Tabuleiro {
     }
 
     public boolean checarSeTiroAcertou(String posicaoDoTiro) {
-        for (String item : posicoes) {
+        for (String item : posicoesDosNavios) {
             if (Objects.equals(posicaoDoTiro, item)) return true;
         }
         return false;
