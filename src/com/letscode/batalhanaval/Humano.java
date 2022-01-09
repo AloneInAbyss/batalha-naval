@@ -3,6 +3,7 @@ package com.letscode.batalhanaval;
 import java.util.Scanner;
 
 public class Humano {
+    Scanner scanner = new Scanner(System.in);
     Tabuleiro tabuleiro;
     public short pontos;
 
@@ -13,7 +14,8 @@ public class Humano {
 
     public void posicionarPecas() {
         for (int i = 0; i < tabuleiro.numeroDePecas; i++) {
-            String posicao = receberPosicaoDoUsuario();
+            System.out.println("Digite a " + (i+1) + "ª peça (por exemplo, A4): ");
+            String posicao = scanner.nextLine().toUpperCase().trim();
 
             if (tabuleiro.verificarSePosicaoRepetida(posicao)) {
                 System.out.println("Posição inválida!");
@@ -31,18 +33,12 @@ public class Humano {
         }
     }
 
-    private String receberPosicaoDoUsuario() {
-        System.out.println("Digite uma posição (por exemplo, A4): ");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine().toUpperCase().trim();
-    }
-
-    public void fazerJogada(CPU cpu) {
+    public void fazerJogada(Cpu cpu) {
         String jogada = "";
         boolean jogadaInvalida = true;
 
         while (jogadaInvalida) {
-            String posicao = receberPosicaoDoUsuario();
+            String posicao = scanner.nextLine().toUpperCase().trim();
 
             if (tabuleiro.verificarSeJogadaInvalida(posicao)) {
                 System.out.println("Posição inválida!");

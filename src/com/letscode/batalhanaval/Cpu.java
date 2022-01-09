@@ -2,11 +2,11 @@ package com.letscode.batalhanaval;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CPU {
+public class Cpu {
     Tabuleiro tabuleiro;
     public short pontos;
 
-    public CPU() {
+    public Cpu() {
         tabuleiro = new Tabuleiro();
         pontos = tabuleiro.numeroDePecas;
     }
