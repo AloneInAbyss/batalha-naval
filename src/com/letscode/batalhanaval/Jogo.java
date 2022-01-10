@@ -2,12 +2,12 @@ package com.letscode.batalhanaval;
 
 public class Jogo {
     private final Humano humano;
-    private final CPU cpu;
+    private final Cpu cpu;
     boolean fimDeJogo;
 
     public Jogo() {
         humano = new Humano();
-        cpu = new CPU();
+        cpu = new Cpu();
 
         gameLoop();
     }
