@@ -6,12 +6,13 @@ import java.util.Objects;
 public class Tabuleiro {
     public short numeroDePecas;
     public String[] posicoesDosNavios;
-    public ArrayList<String> jogadasAnteriores;
+    public ArrayList<String> jogadasAnteriores, jogadasComAcerto;
 
     public Tabuleiro() {
         numeroDePecas = 2;
         posicoesDosNavios = new String[numeroDePecas];
         jogadasAnteriores = new ArrayList<>();
+        jogadasComAcerto = new ArrayList<>();
     }
 
     private boolean verificarSePosicaoInvalida(String posicao) {
@@ -74,7 +75,10 @@ public class Tabuleiro {
 
     public boolean checarSeTiroAcertou(String posicaoDoTiro) {
         for (String item : posicoesDosNavios) {
-            if (Objects.equals(posicaoDoTiro, item)) return true;
+            if (Objects.equals(posicaoDoTiro, item)) {
+                jogadasComAcerto.add(posicaoDoTiro);
+                return true;
+            }
         }
         return false;
     }
