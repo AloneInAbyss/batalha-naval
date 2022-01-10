@@ -31,7 +31,7 @@ public class Tabuleiro {
         System.out.println("| H |     |     |     |     |     |     |     |     |     |     |");
         System.out.println("| I |     |     |     |     |     |     |     |     |     |     |");
         System.out.println("| J |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("----| Jogador: 10 |------- NAVIOS RESTANTES -------| CPU: 10 | ----");
+        System.out.println("----| Jogador: " + numeroDePecas + " |------- NAVIOS RESTANTES -------| CPU: " + numeroDePecas + " | ----");
     }
 
     private boolean verificarSePosicaoInvalida(String posicao) {
