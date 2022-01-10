@@ -20,19 +20,23 @@ public class Jogo {
             humano.fazerJogada(cpu);
             cpu.fazerJogada(humano);
 
-            if (checarSePontosAcabaram()) fimDeJogo = true;
+            String resultado = verificarVencedor();
+            if (!resultado.equals("")) {
+                System.out.println("Vencedor: " + resultado);
+                fimDeJogo = true;
+            }
         }
     }
 
-    private boolean checarSePontosAcabaram() {
+    private String verificarVencedor() {
         if (humano.pontos <= 0) {
-            return true;
+            return "CPU";
         }
 
         if (cpu.pontos <= 0) {
-            return true;
+            return "Player";
         }
 
-        return false;
+        return "";
     }
 }
