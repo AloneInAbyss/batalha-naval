@@ -24,10 +24,10 @@ public class Cpu {
         }
 
         // Debug
-        System.out.println("Navios da CPU:");
-        for (String pos : tabuleiro.posicoesDosNavios) {
-            System.out.println(pos);
-        }
+//        System.out.println("Navios da CPU:");
+//        for (String pos : tabuleiro.posicoesDosNavios) {
+//            System.out.println(pos);
+//        }
     }
 
     public String sortearPosicao() {
@@ -77,7 +77,7 @@ public class Cpu {
 
     public void receberJogada(String posicao) {
         if (tabuleiro.checarSeTiroAcertou(posicao)) pontos--;
-        System.out.println("Navios restantes da CPU: " + pontos);
+        System.out.println("|-> CPU: " + pontos + " navios restantes!");
     }
 
     public void fazerJogada(Humano humano) {
@@ -99,9 +99,9 @@ public class Cpu {
         humano.receberJogada(jogada);
 
         // Debug
-        System.out.println("Jogadas da CPU:");
-        for (String item : tabuleiro.jogadasAnteriores) {
-            System.out.println(item);
-        }
+//        System.out.println("Jogadas da CPU:");
+//        for (String item : tabuleiro.jogadasAnteriores) {
+//            System.out.println(item);
+//        }
     }
 }

@@ -27,10 +27,10 @@ public class Humano {
         }
 
         // Debug
-        System.out.println("Seus navios:");
-        for (String pos : tabuleiro.posicoesDosNavios) {
-            System.out.println(pos);
-        }
+//        System.out.println("Seus navios:");
+//        for (String pos : tabuleiro.posicoesDosNavios) {
+//            System.out.println(pos);
+//        }
     }
 
     public void fazerJogada(Cpu cpu) {
@@ -38,6 +38,7 @@ public class Humano {
         boolean jogadaInvalida = true;
 
         while (jogadaInvalida) {
+            System.out.println("Digite a posição que deseja atacar (por exemplo, A4): ");
             String posicao = scanner.nextLine().toUpperCase().trim();
 
             if (tabuleiro.verificarSeJogadaInvalida(posicao)) {
@@ -54,14 +55,14 @@ public class Humano {
         cpu.receberJogada(jogada);
 
         // Debug
-        System.out.println("Suas jogadas:");
-        for (String item : tabuleiro.jogadasAnteriores) {
-            System.out.println(item);
-        }
+//        System.out.println("Suas jogadas:");
+//        for (String item : tabuleiro.jogadasAnteriores) {
+//            System.out.println(item);
+//        }
     }
 
     public void receberJogada(String posicao) {
         if (tabuleiro.checarSeTiroAcertou(posicao)) pontos--;
-        System.out.println("Seus navios restantes: " + pontos);
+        System.out.println("|-> Você: " + pontos + " navios restantes!");
     }
 }
