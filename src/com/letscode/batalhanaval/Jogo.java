@@ -13,10 +13,12 @@ public class Jogo {
     }
 
     private void gameLoop() {
+        humano.tabuleiro.mostrarTabuleiro();
         humano.posicionarPecas();
         cpu.posicionarPecas();
 
         while (!fimDeJogo) {
+            humano.tabuleiro.mostrarTabuleiro();
             humano.fazerJogada(cpu);
             cpu.fazerJogada(humano);
 

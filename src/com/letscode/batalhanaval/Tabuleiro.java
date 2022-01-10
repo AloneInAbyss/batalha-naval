@@ -15,6 +15,26 @@ public class Tabuleiro {
         jogadasComAcerto = new ArrayList<>();
     }
 
+    public void mostrarTabuleiro() {
+        String[][] tabuleiro = new String[10][10];
+
+        System.out.println("----------------------- BATALHA NAVAL ---------------------------");
+        System.out.println("-------------------------- JOGADOR ------------------------------");
+        System.out.println("| - |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |");
+        System.out.println("| A |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| B |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| C |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| D |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| E |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| F |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| G |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| H |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| I |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("| J |     |     |     |     |     |     |     |     |     |     |");
+        System.out.println("-----------------------------------------------------------------");
+
+    }
+
     private boolean verificarSePosicaoInvalida(String posicao) {
         if (posicao.length() != 2) return true;
 
