@@ -7,20 +7,62 @@ public class Tabuleiro {
     public short numeroDePecas;
     public String[] posicoesDosNavios;
     public ArrayList<String> jogadasAnteriores, jogadasComAcerto;
+    public char[][] tab = new char[11][67];
 
     public Tabuleiro() {
         numeroDePecas = 2;
         posicoesDosNavios = new String[numeroDePecas];
         jogadasAnteriores = new ArrayList<>();
         jogadasComAcerto = new ArrayList<>();
+        tab = montarTabuleiro();
     }
 
-    public void mostrarTabuleiro() {
-        String[][] tabuleiro = new String[10][10];
+    public char[][] montarTabuleiro(){
+        char[][] tab = new char[11][67];
+        char[] nomeLinhas = {'A','B','C','D','E','F','G','H','I','J'};
+        int count = 0;
 
-        System.out.println("----------------------- BATALHA NAVAL ---------------------------");
-        System.out.println("-------------------------- JOGADOR ------------------------------");
-        System.out.println("| - |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |");
+        for (int j = 0; j < 67; j++) {
+            if (j % 6 == 0) {
+                tab[0][j] = '|';
+            } else {
+                if ((j-3) % 6 == 0 && j!=3){
+                    tab[0][j] = String.valueOf(count).charAt(0);
+                    count++;
+                }else{
+                    tab[0][j] = ' ';
+                }
+            }
+        }
+
+        for (int i = 1; i<11; i++) {
+            for (int j = 0; j < 67; j++) {
+                if (j % 6 == 0) {
+                    tab[i][j] = '|';
+                } else {
+                    tab[i][j] = ' ';
+                }
+            }
+            tab[i][3] = nomeLinhas[i-1];
+        }
+        return tab;
+
+    }
+
+    public void mostrarTabuleiro(String nome) {
+        //String[][] tabuleiro = new String[10][10];
+
+        System.out.println("------------------------ BATALHA NAVAL ----------------------------");
+        System.out.println("--------------------------- " + nome + " -------------------------------");
+        for (char[] row : this.tab) {
+            for (char collumn : row) {
+                System.out.print(collumn);
+            }
+            System.out.println();
+            System.out.println("-------------------------------------------------------------------");
+        }
+
+        /*System.out.println("| - |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |");
         System.out.println("| A |     |     |     |     |     |     |     |     |     |     |");
         System.out.println("| B |     |     |     |     |     |     |     |     |     |     |");
         System.out.println("| C |     |     |     |     |     |     |     |     |     |     |");
@@ -31,7 +73,53 @@ public class Tabuleiro {
         System.out.println("| H |     |     |     |     |     |     |     |     |     |     |");
         System.out.println("| I |     |     |     |     |     |     |     |     |     |     |");
         System.out.println("| J |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("----| Jogador: " + numeroDePecas + " |------- NAVIOS RESTANTES -------| CPU: " + numeroDePecas + " | ----");
+        System.out.println("-----------------------------------------------------------------");*/
+
+    }
+
+    public void AdicionarSimboloAoTabuleiro(String jogada, char simbolo) {
+        int linha;
+        int coluna;
+
+        switch (jogada.charAt(0)) {
+            case 'A':
+                linha = 0;
+                break;
+            case 'B':
+                linha = 1;
+                break;
+            case 'C':
+                linha = 2;
+                break;
+            case 'D':
+                linha = 3;
+                break;
+            case 'E':
+                linha = 4;
+                break;
+            case 'F':
+                linha = 5;
+                break;
+            case 'G':
+                linha = 6;
+                break;
+            case 'H':
+                linha = 7;
+                break;
+            case 'I':
+                linha = 8;
+                break;
+            case 'J':
+                linha = 9;
+                break;
+            default:
+                throw new Error("Erro ao converter posição na matriz");
+        }
+
+        coluna = jogada.charAt(1) - '0'; // Converte char para int
+        coluna = 9 + coluna*6;
+
+        tab[linha+1][coluna] = simbolo;
     }
 
     private boolean verificarSePosicaoInvalida(String posicao) {

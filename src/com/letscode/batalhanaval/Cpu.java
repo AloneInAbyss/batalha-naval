@@ -21,13 +21,14 @@ public class Cpu {
             }
 
             tabuleiro.posicoesDosNavios[i] = posicao;
+            tabuleiro.AdicionarSimboloAoTabuleiro(posicao,'N');
         }
 
         // Debug
-//        System.out.println("Navios da CPU:");
-//        for (String pos : tabuleiro.posicoesDosNavios) {
-//            System.out.println(pos);
-//        }
+        System.out.println("[APAGAR] Navios da CPU:");
+        for (String pos : tabuleiro.posicoesDosNavios) {
+            System.out.println(pos);
+        }
     }
 
     public String sortearPosicao() {
@@ -75,14 +76,23 @@ public class Cpu {
         return position;
     }
 
-    public void receberJogada(String posicao) {
-        if (tabuleiro.checarSeTiroAcertou(posicao)) pontos--;
-        System.out.println("|-> CPU: " + pontos + " navios restantes!");
+    public Boolean receberJogada(String posicao) {
+        if (tabuleiro.checarSeTiroAcertou(posicao)) {
+            pontos--;
+            System.out.println("Parabéns, você acertou um navio!!");
+            System.out.println("Navios restantes da CPU: " + pontos);
+            return true;
+        }
+        System.out.println("Ops, tiro na água!");
+        System.out.println("Navios restantes da CPU: " + pontos);
+        return false;
     }
 
     public void fazerJogada(Humano humano) {
         String jogada = "";
         boolean jogadaInvalida = true;
+        boolean acerto;
+        char simbolo;
 
         while (jogadaInvalida) {
             jogada = sortearPosicao();
@@ -96,12 +106,32 @@ public class Cpu {
 
         tabuleiro.jogadasAnteriores.add(jogada);
 
-        humano.receberJogada(jogada);
+        acerto = humano.receberJogada(jogada);
 
-        // Debug
-//        System.out.println("Jogadas da CPU:");
-//        for (String item : tabuleiro.jogadasAnteriores) {
-//            System.out.println(item);
-//        }
+        if (acerto) {
+            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+                simbolo = 'X';
+            } else {
+                simbolo = '*';
+            }
+        } else {
+            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+                simbolo = 'n';
+            } else {
+                simbolo = '-';
+            }
+        }
+
+        tabuleiro.AdicionarSimboloAoTabuleiro(jogada,simbolo);
+
+
+        System.out.print("Jogada da CPU:");
+        System.out.println(jogada);
+        if (acerto) {
+            System.out.println("Homens ao mar, você perdeu um navio!");
+        } else {
+            System.out.println("Sua frota não foi atingida. Tiro na água!");
+        }
+
     }
 }
