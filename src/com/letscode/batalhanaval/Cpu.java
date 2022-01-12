@@ -5,6 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Cpu {
     Tabuleiro tabuleiro;
     public short pontos;
+    String[] jogadasTeste = new String[]{"B2", "F6", "H3"};
+    int tiroTeste = 0;
 
     public Cpu() {
         tabuleiro = new Tabuleiro();
@@ -28,6 +30,14 @@ public class Cpu {
         System.out.println("[APAGAR] Navios da CPU:");
         for (String pos : tabuleiro.posicoesDosNavios) {
             System.out.println(pos);
+        }
+    }
+
+    public void posicionarPecasTeste() {
+        tabuleiro.posicoesDosNavios = new String[]{"A2", "B5"};
+
+        for (String posicao: tabuleiro.posicoesDosNavios) {
+            tabuleiro.AdicionarSimboloAoTabuleiro(posicao,'N');
         }
     }
 
@@ -133,5 +143,42 @@ public class Cpu {
             System.out.println("Sua frota não foi atingida. Tiro na água!");
         }
 
+    }
+
+    public void fazerJogadaTeste(Humano humano) {
+        String jogada = "";
+        jogada = jogadasTeste[tiroTeste];
+        boolean acerto;
+        char simbolo;
+
+        tabuleiro.jogadasAnteriores.add(jogada);
+
+        acerto = humano.receberJogada(jogada);
+
+        if (acerto) {
+            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+                simbolo = 'X';
+            } else {
+                simbolo = '*';
+            }
+        } else {
+            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+                simbolo = 'n';
+            } else {
+                simbolo = '-';
+            }
+        }
+
+        tabuleiro.AdicionarSimboloAoTabuleiro(jogada,simbolo);
+
+
+        System.out.print("Jogada da CPU:");
+        System.out.println(jogada);
+        if (acerto) {
+            System.out.println("Homens ao mar, você perdeu um navio!");
+        } else {
+            System.out.println("Sua frota não foi atingida. Tiro na água!");
+        }
+        tiroTeste++;
     }
 }

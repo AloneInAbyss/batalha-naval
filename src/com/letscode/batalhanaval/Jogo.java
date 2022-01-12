@@ -19,7 +19,8 @@ public class Jogo {
 
         humano.tabuleiro.mostrarTabuleiro("JOGADOR");
         humano.posicionarPecas();
-        cpu.posicionarPecas();
+        //cpu.posicionarPecas();
+        cpu.posicionarPecasTeste();
 
 
         while (!fimDeJogo) {
@@ -28,7 +29,8 @@ public class Jogo {
             resultado = verificarVencedor();
 
             if (resultado.equals("")) {
-                cpu.fazerJogada(humano);
+                //cpu.fazerJogada(humano);
+                cpu.fazerJogadaTeste(humano);
                 resultado = verificarVencedor();
             }
 
