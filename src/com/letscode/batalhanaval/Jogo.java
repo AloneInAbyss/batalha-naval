@@ -15,17 +15,13 @@ public class Jogo {
     }
 
     private void gameLoop() {
-        String resultado = "";
-
         humano.tabuleiro.mostrarTabuleiro("JOGADOR");
         humano.posicionarPecas();
         cpu.posicionarPecas();
 
-
         while (!fimDeJogo) {
-            System.out.println("Faça sua jogada:");
             humano.fazerJogada(cpu);
-            resultado = verificarVencedor();
+            String resultado = verificarVencedor();
 
             if (resultado.equals("")) {
                 cpu.fazerJogada(humano);

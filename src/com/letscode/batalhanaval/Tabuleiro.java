@@ -7,7 +7,7 @@ public class Tabuleiro {
     public short numeroDePecas;
     public String[] posicoesDosNavios;
     public ArrayList<String> jogadasAnteriores, jogadasComAcerto;
-    public char[][] tab = new char[11][67];
+    private final char[][] tab;
 
     public Tabuleiro() {
         numeroDePecas = 2;
@@ -19,23 +19,23 @@ public class Tabuleiro {
 
     public char[][] montarTabuleiro(){
         char[][] tab = new char[11][67];
-        char[] nomeLinhas = {'A','B','C','D','E','F','G','H','I','J'};
+        char[] nomeLinhas = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         int count = 0;
 
         for (int j = 0; j < 67; j++) {
             if (j % 6 == 0) {
                 tab[0][j] = '|';
             } else {
-                if ((j-3) % 6 == 0 && j!=3){
+                if ((j-3) % 6 == 0 && j != 3){
                     tab[0][j] = String.valueOf(count).charAt(0);
                     count++;
-                }else{
+                } else {
                     tab[0][j] = ' ';
                 }
             }
         }
 
-        for (int i = 1; i<11; i++) {
+        for (int i = 1; i < 11; i++) {
             for (int j = 0; j < 67; j++) {
                 if (j % 6 == 0) {
                     tab[i][j] = '|';
@@ -45,36 +45,20 @@ public class Tabuleiro {
             }
             tab[i][3] = nomeLinhas[i-1];
         }
-        return tab;
 
+        return tab;
     }
 
     public void mostrarTabuleiro(String nome) {
-        //String[][] tabuleiro = new String[10][10];
-
         System.out.println("------------------------ BATALHA NAVAL ----------------------------");
         System.out.println("--------------------------- " + nome + " -------------------------------");
-        for (char[] row : this.tab) {
+        for (char[] row : tab) {
             for (char collumn : row) {
                 System.out.print(collumn);
             }
             System.out.println();
             System.out.println("-------------------------------------------------------------------");
         }
-
-        /*System.out.println("| - |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |");
-        System.out.println("| A |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| B |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| C |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| D |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| E |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| F |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| G |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| H |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| I |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("| J |     |     |     |     |     |     |     |     |     |     |");
-        System.out.println("-----------------------------------------------------------------");*/
-
     }
 
     public void AdicionarSimboloAoTabuleiro(String jogada, char simbolo) {
@@ -117,9 +101,9 @@ public class Tabuleiro {
         }
 
         coluna = jogada.charAt(1) - '0'; // Converte char para int
-        coluna = 9 + coluna*6;
+        coluna = 9 + coluna * 6;
 
-        tab[linha+1][coluna] = simbolo;
+        tab[linha + 1][coluna] = simbolo;
     }
 
     private boolean verificarSePosicaoInvalida(String posicao) {

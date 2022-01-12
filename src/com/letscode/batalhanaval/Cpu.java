@@ -115,7 +115,7 @@ public class Cpu {
                 simbolo = '*';
             }
         } else {
-            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+            if (tabuleiro.verificarSePosicaoRepetida(jogada)) {
                 simbolo = 'n';
             } else {
                 simbolo = '-';
@@ -123,7 +123,6 @@ public class Cpu {
         }
 
         tabuleiro.AdicionarSimboloAoTabuleiro(jogada,simbolo);
-
 
         System.out.print("Jogada da CPU:");
         System.out.println(jogada);
