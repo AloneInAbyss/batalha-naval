@@ -1,5 +1,6 @@
 package com.letscode.batalhanaval;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Humano {
@@ -24,24 +25,26 @@ public class Humano {
             }
 
             tabuleiro.posicoesDosNavios[i] = posicao;
+            tabuleiro.AdicionarSimboloAoTabuleiro(posicao,'N');
+            tabuleiro.mostrarTabuleiro("JOGADOR");
         }
 
-        // Debug
         System.out.println("Seus navios:");
-        for (String pos : tabuleiro.posicoesDosNavios) {
-            System.out.println(pos);
-        }
+        System.out.println(Arrays.toString(tabuleiro.posicoesDosNavios));
     }
 
     public void fazerJogada(Cpu cpu) {
         String jogada = "";
         boolean jogadaInvalida = true;
+        boolean acerto;
+        char simbolo;
 
         while (jogadaInvalida) {
             String posicao = scanner.nextLine().toUpperCase().trim();
 
             if (tabuleiro.verificarSeJogadaInvalida(posicao)) {
                 System.out.println("Posição inválida!");
+                System.out.println("Faça sua jogada:");
                 continue;
             }
 
@@ -51,17 +54,31 @@ public class Humano {
 
         tabuleiro.jogadasAnteriores.add(jogada);
 
-        cpu.receberJogada(jogada);
+        acerto = cpu.receberJogada(jogada);
 
-        // Debug
-        System.out.println("Suas jogadas:");
-        for (String item : tabuleiro.jogadasAnteriores) {
-            System.out.println(item);
+        if (acerto) {
+            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+                simbolo = 'X';
+            } else {
+                simbolo = '*';
+            }
+        } else {
+            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+                simbolo = 'n';
+            } else {
+                simbolo = '-';
+            }
         }
+
+        tabuleiro.AdicionarSimboloAoTabuleiro(jogada,simbolo);
+        tabuleiro.mostrarTabuleiro("JOGADOR");
     }
 
-    public void receberJogada(String posicao) {
-        if (tabuleiro.checarSeTiroAcertou(posicao)) pontos--;
-        System.out.println("Seus navios restantes: " + pontos);
+    public Boolean receberJogada(String posicao) {
+        if (tabuleiro.checarSeTiroAcertou(posicao)) {
+            pontos--;
+            return true;
+        }
+        return false;
     }
 }

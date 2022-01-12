@@ -1,5 +1,7 @@
 package com.letscode.batalhanaval;
 
+import java.util.Arrays;
+
 public class Jogo {
     private final Humano humano;
     private final Cpu cpu;
@@ -13,18 +15,33 @@ public class Jogo {
     }
 
     private void gameLoop() {
-        humano.tabuleiro.mostrarTabuleiro();
+        String resultado = "";
+
+        humano.tabuleiro.mostrarTabuleiro("JOGADOR");
         humano.posicionarPecas();
         cpu.posicionarPecas();
 
-        while (!fimDeJogo) {
-            humano.tabuleiro.mostrarTabuleiro();
-            humano.fazerJogada(cpu);
-            cpu.fazerJogada(humano);
 
-            String resultado = verificarVencedor();
+        while (!fimDeJogo) {
+            System.out.println("Faça sua jogada:");
+            humano.fazerJogada(cpu);
+            resultado = verificarVencedor();
+
+            if (resultado.equals("")) {
+                cpu.fazerJogada(humano);
+                resultado = verificarVencedor();
+            }
+
             if (!resultado.equals("")) {
                 System.out.println("Vencedor: " + resultado);
+                cpu.tabuleiro.mostrarTabuleiro("  CPU  ");
+
+                System.out.println("Suas jogadas:");
+                System.out.println(Arrays.toString(humano.tabuleiro.jogadasAnteriores.toArray()));
+
+                System.out.println("Jogadas da CPU:");
+                System.out.println(Arrays.toString(cpu.tabuleiro.jogadasAnteriores.toArray()));
+
                 fimDeJogo = true;
             }
         }
