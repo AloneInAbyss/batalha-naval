@@ -15,18 +15,15 @@ public class Jogo {
     }
 
     private void gameLoop() {
-        String resultado = "";
-
         humano.tabuleiro.mostrarTabuleiro("JOGADOR");
         humano.posicionarPecas();
         //cpu.posicionarPecas();
         cpu.posicionarPecasTeste();
 
-
         while (!fimDeJogo) {
-            System.out.println("Faça sua jogada:");
             humano.fazerJogada(cpu);
-            resultado = verificarVencedor();
+            cpu.exibirNaviosRestantes();
+            String resultado = verificarVencedor();
 
             if (resultado.equals("")) {
                 //cpu.fazerJogada(humano);

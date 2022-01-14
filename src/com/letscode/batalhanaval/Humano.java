@@ -40,6 +40,8 @@ public class Humano {
         char simbolo;
 
         while (jogadaInvalida) {
+            System.out.println();
+            System.out.println("Faça sua jogada:");
             String posicao = scanner.nextLine().toUpperCase().trim();
 
             if (tabuleiro.verificarSeJogadaInvalida(posicao)) {
@@ -57,20 +59,20 @@ public class Humano {
         acerto = cpu.receberJogada(jogada);
 
         if (acerto) {
-            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+            if (tabuleiro.verificarSePosicaoRepetida(jogada)) {
                 simbolo = 'X';
             } else {
                 simbolo = '*';
             }
         } else {
-            if(tabuleiro.verificarSePosicaoRepetida(jogada)) {
+            if (tabuleiro.verificarSePosicaoRepetida(jogada)) {
                 simbolo = 'n';
             } else {
                 simbolo = '-';
             }
         }
 
-        tabuleiro.AdicionarSimboloAoTabuleiro(jogada,simbolo);
+        tabuleiro.AdicionarSimboloAoTabuleiro(jogada, simbolo);
         tabuleiro.mostrarTabuleiro("JOGADOR");
     }
 
