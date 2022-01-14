@@ -40,6 +40,7 @@ public class Humano {
         char simbolo;
 
         while (jogadaInvalida) {
+            System.out.println();
             System.out.println("Faça sua jogada:");
             String posicao = scanner.nextLine().toUpperCase().trim();
 

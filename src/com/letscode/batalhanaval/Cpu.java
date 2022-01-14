@@ -25,10 +25,10 @@ public class Cpu {
         }
 
         // Debug
-        System.out.println("[APAGAR] Navios da CPU:");
-        for (String pos : tabuleiro.posicoesDosNavios) {
-            System.out.println(pos);
-        }
+//        System.out.println("Navios da CPU:");
+//        for (String pos : tabuleiro.posicoesDosNavios) {
+//            System.out.println(pos);
+//        }
     }
 
     public String sortearPosicao() {
@@ -80,12 +80,14 @@ public class Cpu {
         if (tabuleiro.checarSeTiroAcertou(posicao)) {
             pontos--;
             System.out.println("Parabéns, você acertou um navio!!");
-            System.out.println("Navios restantes da CPU: " + pontos);
             return true;
         }
         System.out.println("Ops, tiro na água!");
-        System.out.println("Navios restantes da CPU: " + pontos);
         return false;
+    }
+
+    public void exibirNaviosRestantes() {
+        System.out.println("Navios restantes da CPU: " + pontos);
     }
 
     public void fazerJogada(Humano humano) {
@@ -124,7 +126,7 @@ public class Cpu {
 
         tabuleiro.AdicionarSimboloAoTabuleiro(jogada,simbolo);
 
-        System.out.print("Jogada da CPU:");
+        System.out.print("Jogada da CPU: ");
         System.out.println(jogada);
         if (acerto) {
             System.out.println("Homens ao mar, você perdeu um navio!");

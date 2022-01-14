@@ -21,6 +21,7 @@ public class Jogo {
 
         while (!fimDeJogo) {
             humano.fazerJogada(cpu);
+            cpu.exibirNaviosRestantes();
             String resultado = verificarVencedor();
 
             if (resultado.equals("")) {
