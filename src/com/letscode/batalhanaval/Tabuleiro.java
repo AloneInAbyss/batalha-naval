@@ -10,7 +10,7 @@ public class Tabuleiro {
     private final char[][] tab;
 
     public Tabuleiro() {
-        numeroDePecas = 2;
+        numeroDePecas = 10;
         posicoesDosNavios = new String[numeroDePecas];
         jogadasAnteriores = new ArrayList<>();
         jogadasComAcerto = new ArrayList<>();
